@@ -232,7 +232,7 @@ AddEventHandler('qb-banking:initiateTransfer', function(data)
                         if currentBalance ~= nil then
                             local newBalance = currentBalance + data.amount
                             if newBalance ~= currentBalance then
-                                MySQL.Async.execute("UPDATE `bank_accounts` SET `amount` = @newBalance WHERE `account_number` = @an AND `sort_code` = @sc AND `character_id` = @cid", {
+                                QBCore.Functions.ExecuteSql(false,"UPDATE `bank_accounts` SET `amount` = @newBalance WHERE `account_number` = @an AND `sort_code` = @sc AND `character_id` = @cid", {
                                     ['@an'] = data.account,
                                     ['@sc'] = data.sortcode,
                                     ['@cid'] = cid,
